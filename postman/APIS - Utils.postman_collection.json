@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "d0b2d951-bc15-4c10-9cb9-b8bb0658f15b",
+		"name": "APIS - Utils",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gob.ar.datos",
+			"item": [
+				{
+					"name": "gob.ar.datos.provincias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://apis.datos.gob.ar/georef/api/provincias?nombre=Sgo. del Estero",
+							"protocol": "https",
+							"host": [
+								"apis",
+								"datos",
+								"gob",
+								"ar"
+							],
+							"path": [
+								"georef",
+								"api",
+								"provincias"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "Sgo. del Estero"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gob.ar.datos.municipios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gob.ar.datos.localidades",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
