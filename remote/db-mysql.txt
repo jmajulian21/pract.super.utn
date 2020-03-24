@@ -1,0 +1,18 @@
+https://remotemysql.com/login.php 
+email:julian.alb.moreno@gmail.com
+pass:jmsjulian15
+
+Base de datos creado
+You have successfully created a new database. The details are below.
+
+Username: kfLR4Hw1f7
+
+Database name: kfLR4Hw1f7
+
+Password: EK6uocRpOd
+
+Server: remotemysql.com
+
+Port: 3306
+
+These are the username and password to log in to your database and phpMyAdmin
