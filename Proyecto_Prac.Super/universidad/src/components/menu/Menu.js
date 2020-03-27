@@ -3,11 +3,17 @@ import Admin from './menuSingle/Admin';
 import Profesor from './menuSingle/Profesor';
 import Secretaria from './menuSingle/Secretaria';
 import { Grid, Toolbar, AppBar, Button } from '@material-ui/core';
+import { withRouter } from "react-router-dom";
 
 class Menu extends Component {
 
+      ir = to => {
+        this.props.history.push(to);
+      }
+
       logout = () => {
-        localStorage.setItem('estaLogeado', false);
+        localStorage.clear();
+        this.ir("/")
       }
     
     render() {
@@ -30,11 +36,11 @@ class Menu extends Component {
                         </Grid>
                     </Grid>
                     { estaLogeado &&
-                        <Button color="inherit"  onClick={this.logout}>Logout</Button>
+                        <Button color="secondary" variant="contained"   onClick={this.logout}><h4>Logout</h4></Button>
                     }
                 </Toolbar>
             </AppBar>
         )
     }
 }
-export default Menu;
+export default withRouter (Menu);

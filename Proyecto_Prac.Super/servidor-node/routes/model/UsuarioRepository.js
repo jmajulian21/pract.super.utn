@@ -4,15 +4,14 @@ function findBy(params) {
     return new Promise(function (resolve, reject) {
         ds.connection.getConnection(
             function (err, connection) {
-                var sql = ' SELECT USUARIO.ID_PERSONA, '+
-                          '        PERSONA.NOMBRE, '+
-                          '        PERSONA.APELLIDO, '+
-                          '        USUARIO.TIPO_USUARIO '+
-                          ' FROM USUARIO '+
-                          ' INNER JOIN PERSONA ON PERSONA.ID_PERSONA = USUARIO.ID_PERSONA '+
-                          ' WHERE USUARIO.USUARIO LIKE \''+ params.user +'\''+
-                          ' AND USUARIO.CONTRASEÑA LIKE \''+params.pass+'\'';
-
+                var sql = ' SELECT usuario.ID_PERSONA, '+
+                          '        persona.NOMBRE, '+
+                          '        persona.APELLIDO, '+
+                          '        usuario.TIPO_USUARIO '+
+                          ' FROM usuario '+
+                          ' INNER JOIN persona ON persona.ID_PERSONA = usuario.ID_PERSONA '+
+                          ' WHERE usuario.USUARIO LIKE \''+ params.user +'\''+
+                          ' AND usuario.CONTRASEÑA LIKE \''+params.pass+'\'';
                 connection.query(sql, function (err, rows, fields) {
                     try {
                         if (err) throw err;

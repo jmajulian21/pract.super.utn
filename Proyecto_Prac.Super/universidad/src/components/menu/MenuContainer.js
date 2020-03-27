@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Menu from './Menu';
+import MenuG from './Menu';
 
 class MenuContainer extends Component {
     render() { 
         return(
-            <Menu/>
+            <MenuG/>
         )
     }
 }

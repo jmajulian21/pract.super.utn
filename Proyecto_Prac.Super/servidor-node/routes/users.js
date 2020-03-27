@@ -9,6 +9,7 @@ router.post('/login', function (req, res, next) {
   params.pass = req.body.contraseña;
   
   usuarioRepo.findBy(params).then(function (data) {
+    console.log(data);
     res.json(data);
   });
 });
