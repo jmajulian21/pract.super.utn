@@ -1,0 +1,28 @@
+SELECT tipo_persona.descripcion as tipoPersona, 
+persona.apellido, 
+persona.nombre, 
+tipo_documentacion.descripcion as tipoDocumento,
+persona.nroDoc as nroDocumento,
+persona.email
+FROM persona
+INNER JOIN tipo_persona ON persona.id_tipo_persona = tipo_persona.id_tipo
+INNER JOIN tipo_documentacion ON persona.tipoDoc = tipo_documentacion.tipo_documento
+LEFT JOIN alumno ON persona.id_persona = alumno.id_persona
+LEFT JOIN profesor ON persona.id_persona = profesor.id_persona
+LEFT JOIN secretaria ON persona.id_persona = secretaria.id_persona
+WHERE 1=1
+AND tipo_persona.id_tipo = 4
+AND tipo_documentacion.tipo_documento = 1 AND persona.nroDoc like '23456789'
+ORDER BY persona.apellido;
+
+SELECT fecha,DAYOFWEEK(fecha)
+FROM `fechas_2020`
+WHERE fecha BETWEEN (SELECT ciclo_fecha_inicio
+			   FROM `ciclo_lectivo` 
+			   ORDER BY id_ciclo desc LIMIT 1)
+      AND
+      		  (SELECT ciclo_fecha_fin
+			    FROM `ciclo_lectivo` 
+			    ORDER BY id_ciclo desc LIMIT 1)
+      AND DAYOFWEEK(fecha) IN (3)
+ORDER BY fecha ASC;
