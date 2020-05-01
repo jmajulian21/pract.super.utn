@@ -1,0 +1,12 @@
+  import Grid from '@material-ui/core/Grid';
+import MenuContainer from './components/menu/MenuContainer';
+import History from './components/home/History';
+
+  <Grid container spacing={8}>
+            <Grid item xs={12}>
+              <MenuContainer/>
+            </Grid>
+            <Grid item xs={12}>
+              <History/>
+            </Grid>
+          </Grid>

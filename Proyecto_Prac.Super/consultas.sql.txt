@@ -26,3 +26,15 @@ WHERE fecha BETWEEN (SELECT ciclo_fecha_inicio
 			    ORDER BY id_ciclo desc LIMIT 1)
       AND DAYOFWEEK(fecha) IN (3)
 ORDER BY fecha ASC;
+
+SELECT asignacion_x_curso.id_asignacion,cursos.*, materia.*, dia_clase.*, horario_clase.*
+FROM `asignacion_x_curso`
+INNER JOIN asignacion on asignacion.id_asignacion = asignacion_x_curso.id_asignacion
+INNER JOIN materia on materia.id_materia = asignacion.id_materia
+INNER JOIN dia_clase on dia_clase.id_dia_clase = asignacion_x_curso.id_dia
+INNER JOIN horario_clase on horario_clase.id_horario_clase = asignacion_x_curso.id_horario
+INNER JOIN cursos on cursos.id_curso = asignacion_x_curso.id_curso
+where (   asignacion_x_curso.id_profesor_1 = 2 
+       or asignacion_x_curso.id_profesor_2 = 2 
+       or asignacion_x_curso.id_profesor_3 = 2)
+order by asignacion_x_curso.id_dia;
