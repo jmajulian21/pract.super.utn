@@ -38,3 +38,13 @@ where (   asignacion_x_curso.id_profesor_1 = 2
        or asignacion_x_curso.id_profesor_2 = 2 
        or asignacion_x_curso.id_profesor_3 = 2)
 order by asignacion_x_curso.id_dia;
+
+SELECT  materia.materia ,CASE WHEN count(asistencia) = 4 THEN "Libre" END as status
+FROM `asistencia` 
+INNER JOIN alumno_inscripto ON alumno_inscripto.id_alumno_inscripto = asistencia.id_alumno_inscripto
+INNER JOIN asignacion_x_curso ON alumno_inscripto.id_asignacion_curso = asignacion_x_curso.id_asignacion_curso
+INNER JOIN asignacion ON asignacion.id_asignacion = asignacion_x_curso.id_asignacion
+INNER JOIN materia ON materia.id_materia = asignacion.id_materia
+INNER JOIN alumno ON alumno.id_alumno = alumno_inscripto.id_alumno
+INNER JOIN persona on persona.id_persona = alumno.id_persona
+GROUP BY materia.materia;
