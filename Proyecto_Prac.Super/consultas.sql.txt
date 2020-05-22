@@ -48,3 +48,16 @@ INNER JOIN materia ON materia.id_materia = asignacion.id_materia
 INNER JOIN alumno ON alumno.id_alumno = alumno_inscripto.id_alumno
 INNER JOIN persona on persona.id_persona = alumno.id_persona
 GROUP BY materia.materia;
+
+
+SELECT materia.legajo, materia.materia, tipo_examen.tipo_examen, examen_alumno.nota
+FROM examen_alumno
+INNER JOIN examen on examen.id_examen = examen_alumno.id_examen
+INNER JOIN tipo_examen on tipo_examen.id_tipo_examen = examen.id_tipo_examen
+INNER JOIN asignacion_x_curso on asignacion_x_curso.id_asignacion_curso = examen.id_asignacion_curso
+INNER JOIN asignacion on asignacion.id_asignacion = asignacion_x_curso.id_asignacion
+INNER JOIN materia on materia.id_materia = asignacion.id_materia
+INNER JOIN alumno_inscripto on alumno_inscripto.id_alumno_inscripto = examen_alumno.id_alumno_inscripto
+INNER JOIN alumno on alumno.id_alumno = alumno_inscripto.id_alumno
+INNER JOIN persona on persona.id_persona = alumno.id_persona
+WHERE persona.legajo = -
