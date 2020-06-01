@@ -61,3 +61,5 @@ INNER JOIN alumno_inscripto on alumno_inscripto.id_alumno_inscripto = examen_alu
 INNER JOIN alumno on alumno.id_alumno = alumno_inscripto.id_alumno
 INNER JOIN persona on persona.id_persona = alumno.id_persona
 WHERE persona.legajo = -
+
+Revisar id 10021 que logea como profesor y no como alumno
