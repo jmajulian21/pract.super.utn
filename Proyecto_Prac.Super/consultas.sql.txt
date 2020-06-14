@@ -62,4 +62,19 @@ INNER JOIN alumno on alumno.id_alumno = alumno_inscripto.id_alumno
 INNER JOIN persona on persona.id_persona = alumno.id_persona
 WHERE persona.legajo = -
 
-Revisar id 10021 que logea como profesor y no como alumno
+SELECT asistencia.id_alumno_inscripto, concat(persona.apellido,",",persona.nombre) as alumno, asistencia.fecha, asistencia.asistencia
+FROM `asistencia`
+INNER JOIN alumno_inscripto on asistencia.id_alumno_inscripto = alumno_inscripto.id_alumno_inscripto 
+INNER JOIN 	alumno ON alumno_inscripto.id_alumno = alumno.id_alumno
+INNER JOIN persona ON persona.id_persona = alumno.id_persona
+where `id_asignacion_curso` = 1 and asistencia.fecha IN ('2020-03-30','2020-04-06','2020-04-13','2020-04-20')
+order by concat(persona.apellido,",",persona.nombre), asistencia.fecha asc;
+
+
+SELECT * 
+FROM correlativas
+LEFT JOIN asignacion on correlativas.id_asignacion = asignacion.id_asignacion 
+LEFT JOIN asignacion_x_curso on asignacion_x_curso.id_asignacion = asignacion.id_asignacion
+LEFT JOIN alumno_inscripto on alumno_inscripto.id_asignacion_curso = asignacion_x_curso.id_asignacion_curso
+LEFT JOIN examen_alumno on examen_alumno.id_alumno_inscripto = alumno_inscripto.id_alumno_inscripto
+WHERE alumno_inscripto.id_alumno_inscripto = 1;

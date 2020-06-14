@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-05-2020 a las 04:46:10
+-- Tiempo de generación: 14-06-2020 a las 03:51:52
 -- Versión del servidor: 8.0.13-4
--- Versión de PHP: 7.2.24-0ubuntu0.18.04.4
+-- Versión de PHP: 7.2.24-0ubuntu0.18.04.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,7 +48,8 @@ INSERT INTO `alumno` (`id_alumno`, `id_persona`, `egresadoDe`, `titulo`, `promed
 (5, 22, 'Liceo Nº 09 DE 10 Santiago Derqui', 'Bachiller', 8),
 (6, 23, 'Liceo Nº 09 DE 10 Santiago Derqui', 'Bachiller', 8),
 (7, 24, 'Lanus', 'Escuela Comun', 9),
-(8, 25, 'Lanus', 'Escuela Comun', 9);
+(8, 25, 'Lanus', 'Escuela Comun', 9),
+(9, 26, 'UTN', 'Genio', 10);
 
 -- --------------------------------------------------------
 
@@ -59,21 +60,25 @@ INSERT INTO `alumno` (`id_alumno`, `id_persona`, `egresadoDe`, `titulo`, `promed
 CREATE TABLE `alumno_inscripto` (
   `id_alumno_inscripto` int(11) NOT NULL,
   `id_asignacion_curso` int(11) NOT NULL,
-  `id_alumno` int(11) NOT NULL,
-  `estado_alumno` int(11) NOT NULL
+  `id_alumno` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `alumno_inscripto`
 --
 
-INSERT INTO `alumno_inscripto` (`id_alumno_inscripto`, `id_asignacion_curso`, `id_alumno`, `estado_alumno`) VALUES
-(1, 1, 1, 0),
-(2, 1, 2, 0),
-(3, 1, 3, 0),
-(4, 1, 4, 0),
-(5, 1, 5, 0),
-(6, 1, 6, 0);
+INSERT INTO `alumno_inscripto` (`id_alumno_inscripto`, `id_asignacion_curso`, `id_alumno`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 2, 1),
+(8, 3, 1),
+(9, 6, 1),
+(10, 4, 1),
+(11, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -128,8 +133,7 @@ INSERT INTO `asignacion` (`id_asignacion`, `id_materia`, `cuatrimestre`, `id_car
 (33, 33, 6, 2),
 (34, 34, 6, 2),
 (35, 35, 6, 2),
-(36, 36, 6, 2),
-(37, 37, 3, 1);
+(36, 36, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -157,7 +161,6 @@ INSERT INTO `asignacion_x_curso` (`id_asignacion_curso`, `id_asignacion`, `id_cu
 (2, 1, 1, 3, 5, 4, NULL, NULL),
 (3, 3, 1, 3, 6, 5, NULL, NULL),
 (4, 5, 1, 4, 4, 2, 3, NULL),
-(5, 1, 1, 5, 4, 6, NULL, NULL),
 (6, 2, 1, 6, 4, 2, NULL, NULL),
 (7, 8, 4, 2, 5, 5, NULL, NULL),
 (8, 11, 4, 2, 6, 5, NULL, NULL),
@@ -187,7 +190,7 @@ CREATE TABLE `asistencia` (
   `id_asistencia` int(11) NOT NULL,
   `id_alumno_inscripto` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `asistencia` varchar(2) NOT NULL
+  `asistencia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -195,10 +198,49 @@ CREATE TABLE `asistencia` (
 --
 
 INSERT INTO `asistencia` (`id_asistencia`, `id_alumno_inscripto`, `fecha`, `asistencia`) VALUES
-(1, 1, '2020-05-04', '0'),
-(2, 1, '2020-05-04', '0'),
-(3, 1, '2020-05-04', '0'),
-(4, 1, '2020-05-04', '0');
+(0, 1, '2020-03-30', 1),
+(1, 2, '2020-03-30', 1),
+(2, 3, '2020-03-30', 1),
+(3, 4, '2020-03-30', 1),
+(4, 5, '2020-03-30', 1),
+(5, 6, '2020-03-30', 1),
+(6, 1, '2020-04-06', 1),
+(7, 2, '2020-04-06', 1),
+(8, 3, '2020-04-06', 1),
+(9, 4, '2020-04-06', 1),
+(10, 5, '2020-04-06', 1),
+(11, 6, '2020-04-06', 1),
+(12, 1, '2020-04-13', 1),
+(13, 2, '2020-04-13', 0),
+(14, 3, '2020-04-13', 1),
+(15, 4, '2020-04-13', 0),
+(16, 5, '2020-04-13', 1),
+(17, 6, '2020-04-13', 1),
+(18, 1, '2020-04-20', 0),
+(19, 2, '2020-04-20', 1),
+(20, 3, '2020-04-20', 0),
+(21, 4, '2020-04-20', 1),
+(22, 5, '2020-04-20', 0),
+(23, 6, '2020-04-20', 1),
+(24, 1, '2020-04-26', 1),
+(25, 2, '2020-04-26', 0),
+(26, 3, '2020-04-26', 1),
+(27, 4, '2020-04-26', 0),
+(28, 5, '2020-04-26', 1),
+(29, 6, '2020-04-26', 0),
+(30, 1, '2020-05-03', 1),
+(31, 2, '2020-05-03', 0),
+(32, 3, '2020-05-03', 1),
+(33, 4, '2020-05-03', 1),
+(34, 5, '2020-05-03', 0),
+(35, 6, '2020-05-03', 1),
+(36, 1, '2020-05-10', 0),
+(37, 2, '2020-05-10', 0),
+(38, 3, '2020-05-10', 0),
+(39, 4, '2020-05-10', 1),
+(40, 5, '2020-05-10', 1),
+(41, 6, '2020-05-10', 1),
+(42, 7, '2020-03-31', 1);
 
 -- --------------------------------------------------------
 
@@ -239,6 +281,51 @@ CREATE TABLE `ciclo_lectivo` (
 
 INSERT INTO `ciclo_lectivo` (`id_ciclo`, `ciclo_año`, `ciclo_lectivo`, `ciclo_fecha_inicio`, `ciclo_fecha_fin`) VALUES
 (1, 2020, 1, '2020-03-30', '2020-07-10');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `correlativas`
+--
+
+CREATE TABLE `correlativas` (
+  `id_correlativa` int(11) NOT NULL,
+  `id_asignacion` int(11) NOT NULL,
+  `id_materia_1` int(11) NOT NULL,
+  `id_materia_2` int(11) NOT NULL,
+  `id_materia_3` int(11) NOT NULL,
+  `id_materia_4` int(11) NOT NULL,
+  `id_materia_5` int(11) NOT NULL,
+  `etapa` int(11) NOT NULL COMMENT '1_ Cursada - 2_Final'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `correlativas`
+--
+
+INSERT INTO `correlativas` (`id_correlativa`, `id_asignacion`, `id_materia_1`, `id_materia_2`, `id_materia_3`, `id_materia_4`, `id_materia_5`, `etapa`) VALUES
+(1, 1, 0, 0, 0, 0, 0, 1),
+(2, 1, 0, 0, 0, 0, 0, 2),
+(3, 2, 0, 0, 0, 0, 0, 1),
+(4, 2, 0, 0, 0, 0, 0, 2),
+(5, 3, 0, 0, 0, 0, 0, 1),
+(6, 3, 0, 0, 0, 0, 0, 2),
+(7, 4, 0, 0, 0, 0, 0, 1),
+(8, 4, 0, 0, 0, 0, 0, 2),
+(9, 5, 0, 0, 0, 0, 0, 1),
+(10, 5, 0, 0, 0, 0, 0, 2),
+(11, 6, 2, 0, 0, 0, 0, 1),
+(12, 6, 2, 0, 0, 0, 0, 2),
+(13, 7, 1, 0, 0, 0, 0, 1),
+(14, 7, 1, 0, 0, 0, 0, 2),
+(15, 8, 3, 0, 0, 0, 0, 1),
+(16, 8, 3, 0, 0, 0, 0, 2),
+(17, 9, 4, 5, 0, 0, 0, 1),
+(18, 9, 4, 5, 0, 0, 0, 2),
+(19, 10, 4, 5, 0, 0, 0, 1),
+(20, 10, 4, 5, 0, 0, 0, 2),
+(21, 11, 0, 0, 0, 0, 0, 1),
+(22, 11, 0, 0, 0, 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -327,7 +414,6 @@ INSERT INTO `estado_alumno` (`id_estado`, `estado`, `asistencia`, `nota_1`, `not
 CREATE TABLE `examen` (
   `id_examen` int(11) NOT NULL,
   `id_asignacion_curso` int(11) NOT NULL,
-  `folio` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `id_tipo_examen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -336,9 +422,117 @@ CREATE TABLE `examen` (
 -- Volcado de datos para la tabla `examen`
 --
 
-INSERT INTO `examen` (`id_examen`, `id_asignacion_curso`, `folio`, `fecha`, `id_tipo_examen`) VALUES
-(1, 1, 0, '2020-05-11', 1),
-(2, 1, 0, '2020-05-11', 3);
+INSERT INTO `examen` (`id_examen`, `id_asignacion_curso`, `fecha`, `id_tipo_examen`) VALUES
+(1, 1, '2020-05-11', 1),
+(2, 1, '2020-05-11', 3),
+(3, 1, '2020-05-11', 2),
+(4, 1, '2020-05-11', 5),
+(5, 1, '2020-06-10', 4),
+(6, 2, '2020-06-10', 1),
+(7, 2, '2020-06-10', 2),
+(8, 2, '2020-06-10', 3),
+(9, 2, '2020-06-10', 4),
+(10, 2, '2020-06-10', 5),
+(11, 3, '2020-06-10', 1),
+(12, 3, '2020-06-10', 2),
+(13, 3, '2020-06-10', 3),
+(14, 3, '2020-06-10', 4),
+(15, 3, '2020-06-10', 5),
+(16, 4, '2020-06-10', 1),
+(17, 4, '2020-06-10', 2),
+(18, 4, '2020-06-10', 3),
+(19, 4, '2020-06-10', 4),
+(20, 4, '2020-06-10', 5),
+(21, 6, '2020-06-10', 1),
+(22, 6, '2020-06-10', 2),
+(23, 6, '2020-06-10', 3),
+(24, 6, '2020-06-10', 4),
+(25, 6, '2020-06-10', 5),
+(26, 7, '2020-06-10', 1),
+(27, 7, '2020-06-10', 2),
+(28, 7, '2020-06-10', 3),
+(29, 7, '2020-06-10', 4),
+(30, 7, '2020-06-10', 5),
+(31, 8, '2020-06-10', 1),
+(32, 8, '2020-06-10', 2),
+(33, 8, '2020-06-10', 3),
+(34, 8, '2020-06-10', 4),
+(35, 8, '2020-06-10', 5),
+(36, 9, '2020-06-10', 1),
+(37, 9, '2020-06-10', 2),
+(38, 9, '2020-06-10', 3),
+(39, 9, '2020-06-10', 4),
+(40, 9, '2020-06-10', 5),
+(41, 10, '2020-06-10', 1),
+(42, 10, '2020-06-10', 2),
+(43, 10, '2020-06-10', 3),
+(44, 10, '2020-06-10', 4),
+(45, 10, '2020-06-10', 5),
+(46, 11, '2020-06-10', 1),
+(47, 11, '2020-06-10', 2),
+(48, 11, '2020-06-10', 3),
+(49, 11, '2020-06-10', 4),
+(50, 11, '2020-06-10', 5),
+(51, 12, '2020-06-10', 1),
+(52, 12, '2020-06-10', 2),
+(53, 12, '2020-06-10', 3),
+(54, 12, '2020-06-10', 4),
+(55, 12, '2020-06-10', 5),
+(56, 13, '2020-06-10', 1),
+(57, 13, '2020-06-10', 2),
+(58, 13, '2020-06-10', 3),
+(59, 13, '2020-06-10', 4),
+(60, 13, '2020-06-10', 5),
+(61, 14, '2020-06-10', 1),
+(62, 14, '2020-06-10', 2),
+(63, 14, '2020-06-10', 3),
+(64, 14, '2020-06-10', 4),
+(65, 14, '2020-06-10', 5),
+(66, 15, '2020-06-10', 1),
+(67, 15, '2020-06-10', 2),
+(68, 15, '2020-06-10', 3),
+(69, 15, '2020-06-10', 4),
+(70, 15, '2020-06-10', 5),
+(71, 16, '2020-06-10', 1),
+(72, 16, '2020-06-10', 2),
+(73, 16, '2020-06-10', 3),
+(74, 16, '2020-06-10', 4),
+(75, 16, '2020-06-10', 5),
+(76, 17, '2020-06-10', 1),
+(77, 17, '2020-06-10', 2),
+(78, 17, '2020-06-10', 3),
+(79, 17, '2020-06-10', 4),
+(80, 17, '2020-06-10', 5),
+(81, 18, '2020-06-10', 1),
+(82, 18, '2020-06-10', 2),
+(83, 18, '2020-06-10', 3),
+(84, 18, '2020-06-10', 4),
+(85, 18, '2020-06-10', 5),
+(86, 19, '2020-06-10', 1),
+(87, 19, '2020-06-10', 2),
+(88, 19, '2020-06-10', 3),
+(89, 19, '2020-06-10', 4),
+(90, 19, '2020-06-10', 5),
+(91, 20, '2020-06-10', 1),
+(92, 20, '2020-06-10', 2),
+(93, 20, '2020-06-10', 3),
+(94, 20, '2020-06-10', 4),
+(95, 20, '2020-06-10', 5),
+(96, 21, '2020-06-10', 1),
+(97, 21, '2020-06-10', 2),
+(98, 21, '2020-06-10', 3),
+(99, 21, '2020-06-10', 4),
+(100, 21, '2020-06-10', 5),
+(101, 22, '2020-06-10', 1),
+(102, 22, '2020-06-10', 2),
+(103, 22, '2020-06-10', 3),
+(104, 22, '2020-06-10', 4),
+(105, 22, '2020-06-10', 5),
+(106, 23, '2020-06-10', 1),
+(107, 23, '2020-06-10', 2),
+(108, 23, '2020-06-10', 3),
+(109, 23, '2020-06-10', 4),
+(110, 23, '2020-06-10', 5);
 
 -- --------------------------------------------------------
 
@@ -347,19 +541,34 @@ INSERT INTO `examen` (`id_examen`, `id_asignacion_curso`, `folio`, `fecha`, `id_
 --
 
 CREATE TABLE `examen_alumno` (
-  `id_examen_alumno` int(11) NOT NULL,
   `id_examen` int(11) NOT NULL,
   `id_alumno_inscripto` int(11) NOT NULL,
-  `nota` int(11) NOT NULL
+  `nota` int(11) NOT NULL,
+  `id_examen_alumno` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `examen_alumno`
 --
 
-INSERT INTO `examen_alumno` (`id_examen_alumno`, `id_examen`, `id_alumno_inscripto`, `nota`) VALUES
-(1, 1, 1, 6),
-(2, 2, 1, 6);
+INSERT INTO `examen_alumno` (`id_examen`, `id_alumno_inscripto`, `nota`, `id_examen_alumno`) VALUES
+(1, 1, 8, NULL),
+(2, 1, 10, NULL),
+(1, 2, 4, NULL),
+(2, 2, 4, NULL),
+(1, 3, 4, NULL),
+(2, 3, 2, NULL),
+(5, 3, 4, NULL),
+(1, 4, 2, NULL),
+(3, 4, 10, NULL),
+(2, 4, 4, NULL),
+(1, 5, 5, NULL),
+(5, 5, 5, NULL),
+(1, 6, 2, NULL),
+(3, 6, 10, NULL),
+(2, 6, 10, NULL),
+(16, 10, 8, NULL),
+(18, 10, 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -829,7 +1038,6 @@ INSERT INTO `materia` (`id_materia`, `materia`, `legajo`) VALUES
 (12, 'Elemento de Investigacion Operativa', '95-1223'),
 (13, 'Programacion III', '95-1230'),
 (14, 'Laboratorio de Computacion III', '95-1234'),
-(15, 'Diseño y Administracion de Bases de Datos', '0'),
 (16, 'Organizacion Empresarial', '95-1232'),
 (17, 'Diseño y Administracion de Bases de Datos', '95-1236'),
 (18, 'Laboratorio de Computacion IV', '95-1234'),
@@ -851,7 +1059,30 @@ INSERT INTO `materia` (`id_materia`, `materia`, `legajo`) VALUES
 (34, 'Programacion Avanzada II', '02-1346'),
 (35, 'Seminario', '03-1351'),
 (36, 'Practica Supervisada II', '03-1353'),
-(37, 'Organizacion Contable', '95-1231');
+(15, 'Organizacion Contable', '95-1231');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `noticias`
+--
+
+CREATE TABLE `noticias` (
+  `id_noticia` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL,
+  `todos` int(11) NOT NULL,
+  `noticia` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`id_noticia`, `id_alumno`, `id_curso`, `todos`, `noticia`) VALUES
+(7, 0, 0, 1, 'Todos: Ejemplo general.'),
+(8, 4, 0, 0, 'Legajo 10021: Ejemplo mensaje Luna.'),
+(9, 0, 1, 0, '1A: Ejemplo curso 1A.');
 
 -- --------------------------------------------------------
 
@@ -905,7 +1136,8 @@ INSERT INTO `persona` (`id_persona`, `legajo`, `nombre`, `apellido`, `tipoDoc`, 
 (21, '10021', 'Luna', 'Martínez', 1, '378963149', NULL, 'F', 'San Lorenzo 755', NULL, 1824, 10, NULL, '1112545612', 'luna.martinez@gmail.com', 4),
 (22, '10022', 'Carlos', 'Sánchez', 1, '378963150', NULL, 'M', 'San Martin 205', NULL, 1838, 4, NULL, '1112545612', 'carlos.sanchez@gmail.com', 4),
 (23, '10023', 'Liliana', 'perez', 1, '378963151', NULL, 'F', 'De la torre 1275', NULL, 1838, 4, NULL, '1158654524', 'liliana.sanchez@gmail.com', 4),
-(25, '10025', 'Rocio', 'Moreira', 1, '41258963', '1998-07-24', 'F', 'Alsina 585', '3B', 1804, 10, '42589545', '1123512421', 'rocio.moreira@gmail.com', 4);
+(25, '10025', 'Rocio', 'Moreira', 1, '41258963', '1998-07-24', 'F', 'Alsina 585', '3B', 1804, 10, '42589545', '1123512421', 'rocio.moreira@gmail.com', 4),
+(26, '10026', 'Horacio', 'Ruiz', 1, '89899899', '1976-10-27', 'M', 'Oro 234', '4', 1234, 2, '01143009090', NULL, 'pepitolito@gmail.com', 4);
 
 -- --------------------------------------------------------
 
@@ -1091,14 +1323,13 @@ INSERT INTO `usuario` (`id_usuario`, `usuario`, `contraseña`, `id_persona`, `ti
 (2, '10001', 'welcome1', 1, 2),
 (3, '10002', 'welcome1', 2, 3),
 (4, '10011', 'welcome1', 11, 2),
-(5, '10021', 'welcome1', 7, 2),
+(5, '10007', 'welcome1', 7, 2),
 (6, '10005', 'welcome1', 5, 2),
 (7, '10006', 'welcome1', 6, 2),
 (8, '10007', 'welcome1', 7, 2),
 (9, '10008', 'welcome1', 8, 2),
 (10, '10009', 'welcome1', 9, 2),
 (11, '10010', 'welcome1', 10, 2),
-(12, '10011', 'welcome1', 11, 2),
 (13, '10012', 'welcome1', 12, 2),
 (14, '10013', 'welcome1', 13, 2),
 (15, '10014', 'welcome1', 14, 2),
@@ -1111,7 +1342,8 @@ INSERT INTO `usuario` (`id_usuario`, `usuario`, `contraseña`, `id_persona`, `ti
 (22, '10021', 'welcome1', 21, 4),
 (23, '10023', 'welcome1', 23, 4),
 (24, '10022', 'welcome1', 22, 4),
-(25, '10025', 'welcome1', 25, 4);
+(25, '10025', 'welcome1', 25, 4),
+(26, '10026', 'welcome1', 26, 4);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
